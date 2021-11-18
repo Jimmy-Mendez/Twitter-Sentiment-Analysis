@@ -6,12 +6,12 @@ import pandas as pd
 import numpy as np
 import os
 import nltk
+nltk.downloader.download('vader_lexicon')
 import pycountry
 import re
 import string
 from wordcloud import WordCloud, STOPWORDS
 from PIL import Image
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from langdetect import detect
 from nltk.stem import SnowballStemmer
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
@@ -19,11 +19,11 @@ from sklearn.feature_extraction.text import CountVectorizer
 from keys import key, secret, access_token, access_token_secret
 
 consumerKey = key
-consumerSecret = key
+consumerSecret = secret
 accessToken = access_token
 accessTokenSecret = access_token_secret
 auth = tweepy.OAuthHandler(consumerKey, consumerSecret)
-auth.set_access_token(accessToken, accessTokenSecret, secure=True)
+auth.set_access_token(accessToken, accessTokenSecret)
 api = tweepy.API(auth)
 
 #Sentiment Analysis
