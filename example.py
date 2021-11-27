@@ -17,6 +17,7 @@ from nltk.stem import SnowballStemmer
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from sklearn.feature_extraction.text import CountVectorizer
 from keys import key, secret, access_token, access_token_secret
+from getUTC import now, fiveAgo
 
 consumerKey = key
 consumerSecret = secret
@@ -32,7 +33,7 @@ def percentage(part,whole):
 
 keyword = input("Please enter keyword or hashtag to search: ")
 noOfTweet = int(input("Please enter how many tweets to analyze: "))
-tweets = tweepy.Cursor(api.search_tweets, keyword, count=100).items(noOfTweet)
+tweets = tweepy.Cursor(api.search_30_day, label='testing', query=keyword, fromDate=fiveAgo,toDate=now, maxResults=100).items(noOfTweet)
 positive = 0
 negative = 0
 neutral = 0
@@ -78,6 +79,9 @@ print("total number: ",len(tweet_list))
 print("positive number: ",len(positive_list))
 print("negative number: ", len(negative_list))
 print("neutral number: ",len(neutral_list))
+
+
+
 
 
 
